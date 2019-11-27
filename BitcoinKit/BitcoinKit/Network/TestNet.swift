@@ -27,7 +27,7 @@ class TestNet: INetwork {
     let dustRelayTxFee = 3000 // https://github.com/bitcoin/bitcoin/blob/c536dfbcb00fb15963bf5d507b7017c241718bf6/src/policy/policy.h#L50
 
     var bip44CheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 2,
                         headerHash: "000000000000bbde3a83bd29bc5cacd73f039f345318e7a4088914342c9d259a".reversedData!,
@@ -41,7 +41,7 @@ class TestNet: INetwork {
     }
 
     var lastCheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 545259520,
                         headerHash: "0000000000000351f0f983f65c5abbf0aeec017937d136ea976255823beca984".reversedData!,
