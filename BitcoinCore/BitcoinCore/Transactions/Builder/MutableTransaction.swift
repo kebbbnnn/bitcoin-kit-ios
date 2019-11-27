@@ -38,7 +38,7 @@ public class MutableTransaction {
     }
 
     var pluginDataOutputSize: Int {
-        pluginData.count > 0 ? 1 + pluginData.reduce(into: 0) { $0 += 1 + $1.value.count } : 0                // OP_RETURN (PLUGIN_ID PLUGIN_DATA)
+        return pluginData.count > 0 ? 1 + pluginData.reduce(into: 0) { $0 += 1 + $1.value.count } : 0                // OP_RETURN (PLUGIN_ID PLUGIN_DATA)
     }
 
     public init(outgoing: Bool = true) {
@@ -56,7 +56,7 @@ public class MutableTransaction {
     }
 
     public func build() -> FullTransaction {
-        FullTransaction(header: transaction, inputs: inputsToSign.map{ $0.input }, outputs: outputs)
+        return FullTransaction(header: transaction, inputs: inputsToSign.map{ $0.input }, outputs: outputs)
     }
 
 }

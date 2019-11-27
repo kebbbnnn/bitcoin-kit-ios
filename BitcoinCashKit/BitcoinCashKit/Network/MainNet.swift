@@ -25,7 +25,7 @@ class MainNet: INetwork {
     let dustRelayTxFee = 1000    // https://github.com/Bitcoin-ABC/bitcoin-abc/blob/master/src/policy/policy.h#L78
 
     var bip44CheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 2,
                         headerHash: "00000000000000003decdbb5f3811eab3148fbc29d3610528eb3b50d9ee5723f".reversedData!,
@@ -39,7 +39,7 @@ class MainNet: INetwork {
     }
 
     var lastCheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 536870912,
                         headerHash: "00000000000000000252f670239ac6c123c321a54ca8fb0f853b86a48bf41b58".reversedData!,

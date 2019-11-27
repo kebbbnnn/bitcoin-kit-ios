@@ -10,7 +10,7 @@ class RequestTransactionsTask: PeerTask {
     }
 
     override var state: String {
-        "hashesCount: \(hashes.count); receivedTransactionsCount: \(transactions.count)"
+        return "hashesCount: \(hashes.count); receivedTransactionsCount: \(transactions.count)"
     }
 
     override func start() {

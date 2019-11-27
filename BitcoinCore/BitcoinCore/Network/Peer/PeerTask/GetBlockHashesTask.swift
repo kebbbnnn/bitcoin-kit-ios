@@ -36,7 +36,7 @@ class GetBlockHashesTask: PeerTask {
     }
 
     override var state: String {
-        "expectedHashesMinCount: \(expectedHashesMinCount); allowedIdleTime: \(allowedIdleTime)"
+        return "expectedHashesMinCount: \(expectedHashesMinCount); allowedIdleTime: \(allowedIdleTime)"
     }
 
     override func start() {

@@ -18,7 +18,7 @@ class EDAValidator {
     }
 
     private func medianTimePast(block: Block) -> Int {
-        blockMedianTimeHelper.medianTimePast(block: block) ?? block.height
+        return blockMedianTimeHelper.medianTimePast(block: block) ?? block.height
     }
 
 }
@@ -57,7 +57,7 @@ extension EDAValidator: IBlockValidator {
     }
 
     func isBlockValidatable(block: Block, previousBlock: Block) -> Bool {
-        true
+        return true
     }
 
 }

@@ -21,25 +21,25 @@ public class HodlerPlugin {
         private static let relativeLockTimeLockMask: UInt32 = 0x400000 // (1 << 22)
 
         var sequenceNumber: UInt32 {
-            LockTimeInterval.relativeLockTimeLockMask | UInt32(self.rawValue)
+            return LockTimeInterval.relativeLockTimeLockMask | UInt32(self.rawValue)
         }
 
         public var valueInSeconds: Int {
-            Int(self.rawValue) * LockTimeInterval.sequenceTimeSecondsGranularity
+            return Int(self.rawValue) * LockTimeInterval.sequenceTimeSecondsGranularity
         }
 
         var valueInTwoBytes: Data {
-            Data(from: self.rawValue)
+            return Data(from: self.rawValue)
         }
 
         var valueInThreeBytes: Data {
-            Data(from: sequenceNumber).subdata(in: 0..<3)
+            return Data(from: sequenceNumber).subdata(in: 0..<3)
         }
     }
 
     public static let id: UInt8 = OpCode.push(1)[0]
-    public var id: UInt8 { HodlerPlugin.id }
-    public var maxSpendLimit: Int? { HodlerPlugin.lockedValueLimit }
+    public var id: UInt8 { return HodlerPlugin.id }
+    public var maxSpendLimit: Int? { return HodlerPlugin.lockedValueLimit }
 
     private let addressConverter: IHodlerAddressConverter
     private let blockMedianTimeHelper: IHodlerBlockMedianTimeHelper
@@ -61,7 +61,7 @@ public class HodlerPlugin {
     }
 
     private func lockTimeIntervalFrom(output: Output) throws -> LockTimeInterval {
-        try HodlerOutputData.parse(serialized: output.pluginData).lockTimeInterval
+        return try HodlerOutputData.parse(serialized: output.pluginData).lockTimeInterval
     }
 
     private func inputLockTime(unspentOutput: UnspentOutput) throws -> Int {
@@ -74,7 +74,7 @@ public class HodlerPlugin {
     }
 
     private func csvRedeemScript(lockTimeInterval: LockTimeInterval, publicKeyHash: Data) -> Data {
-        OpCode.push(lockTimeInterval.valueInThreeBytes) + Data([OpCode.checkSequenceVerify, OpCode.drop]) + OpCode.p2pkhStart + OpCode.push(publicKeyHash) + OpCode.p2pkhFinish
+        return OpCode.push(lockTimeInterval.valueInThreeBytes) + Data([OpCode.checkSequenceVerify, OpCode.drop]) + OpCode.p2pkhStart + OpCode.push(publicKeyHash) + OpCode.p2pkhFinish
     }
 
 }
@@ -144,7 +144,7 @@ extension HodlerPlugin: IPlugin {
     }
 
     public func inputSequenceNumber(output: Output) throws -> Int {
-        Int((try lockTimeIntervalFrom(output: output)).sequenceNumber)
+        return Int((try lockTimeIntervalFrom(output: output)).sequenceNumber)
     }
 
     public func parsePluginData(from output: Output, transactionTimestamp: Int) throws -> IPluginOutputData {
@@ -159,7 +159,7 @@ extension HodlerPlugin: IPlugin {
     }
 
     public func keysForApiRestore(publicKey: PublicKey) throws -> [String] {
-        try LockTimeInterval.allCases.map { lockTimeInterval in
+        return try LockTimeInterval.allCases.map { lockTimeInterval in
             let redeemScript = csvRedeemScript(lockTimeInterval: lockTimeInterval, publicKeyHash: publicKey.keyHash)
             let redeemScriptHash = CryptoKit.sha256ripemd160(redeemScript)
 

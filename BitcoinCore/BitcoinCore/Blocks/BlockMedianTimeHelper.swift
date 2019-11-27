@@ -11,7 +11,7 @@ public class BlockMedianTimeHelper {
 extension BlockMedianTimeHelper: IBlockMedianTimeHelper {
 
     public var medianTimePast: Int? {
-        storage.lastBlock.flatMap { medianTimePast(block: $0) }
+        return storage.lastBlock.flatMap { medianTimePast(block: $0) }
     }
 
     public func medianTimePast(block: Block) -> Int? {

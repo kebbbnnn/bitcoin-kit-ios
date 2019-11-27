@@ -28,7 +28,7 @@ extension PluginManager: IPluginManager {
     }
 
     func maxSpendLimit(pluginData: [UInt8: IPluginData]) throws -> Int? {
-        try pluginData.flatMap({ key, data in
+        return try pluginData.flatMap({ key, data in
             guard let plugin = plugins[key] else {
                 throw PluginError.pluginNotFound
             }
@@ -114,11 +114,11 @@ extension PluginManager: IPluginManager {
 extension PluginManager: IRestoreKeyConverter {
 
     public func keysForApiRestore(publicKey: PublicKey) -> [String] {
-        (try? plugins.flatMap({ try $0.value.keysForApiRestore(publicKey: publicKey) })) ?? []
+        return (try? plugins.flatMap({ try $0.value.keysForApiRestore(publicKey: publicKey) })) ?? []
     }
 
     public func bloomFilterElements(publicKey: PublicKey) -> [Data] {
-        []
+        return []
     }
 
 }

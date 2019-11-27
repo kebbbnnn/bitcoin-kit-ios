@@ -15,7 +15,7 @@ class TransactionFeeCalculator {
     }
 
     private func sampleAddress() throws -> String {
-        try addressConverter.convert(publicKey: try publicKeyManager.changePublicKey(), type: changeScriptType).stringValue
+        return try addressConverter.convert(publicKey: try publicKeyManager.changePublicKey(), type: changeScriptType).stringValue
     }
 }
 

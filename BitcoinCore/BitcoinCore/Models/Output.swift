@@ -53,7 +53,7 @@ public class Output: Record {
     }
 
     override open class var databaseTableName: String {
-        "outputs"
+        return "outputs"
     }
 
     enum Columns: String, ColumnExpression, CaseIterable {

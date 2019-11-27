@@ -8,7 +8,7 @@ class SendTransactionTask: PeerTask {
         self.transaction = transaction
     }
     override var state: String {
-        "transaction: \(transaction.header.dataHash.reversedHex)"
+        return "transaction: \(transaction.header.dataHash.reversedHex)"
     }
 
     override func start() {

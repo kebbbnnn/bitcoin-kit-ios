@@ -79,7 +79,7 @@ public class BitcoinCore {
     }
 
     func publicKey(byPath path: String) throws -> PublicKey {
-        try publicKeyManager.publicKey(byPath: path)
+        return try publicKeyManager.publicKey(byPath: path)
     }
 
     public func prepend(addressConverter: IAddressConverter) {
@@ -152,19 +152,19 @@ extension BitcoinCore {
 extension BitcoinCore {
 
     public var lastBlockInfo: BlockInfo? {
-        dataProvider.lastBlockInfo
+        return dataProvider.lastBlockInfo
     }
 
     public var balance: BalanceInfo {
-        dataProvider.balance
+        return dataProvider.balance
     }
 
     public var syncState: BitcoinCore.KitState {
-        kitStateProvider.syncState
+        return kitStateProvider.syncState
     }
 
     public func transactions(fromHash: String? = nil, limit: Int? = nil) -> Single<[TransactionInfo]> {
-        dataProvider.transactions(fromHash: fromHash, limit: limit)
+        return dataProvider.transactions(fromHash: fromHash, limit: limit)
     }
 
     public func send(to address: String, value: Int, feeRate: Int, pluginData: [UInt8: IPluginData] = [:]) throws -> FullTransaction {
@@ -182,19 +182,19 @@ extension BitcoinCore {
     }
 
     func redeem(from unspentOutput: UnspentOutput, to address: String, feeRate: Int) throws -> FullTransaction {
-        try transactionCreator.create(from: unspentOutput, to: address, feeRate: feeRate)
+        return try transactionCreator.create(from: unspentOutput, to: address, feeRate: feeRate)
     }
 
     public func validate(address: String, pluginData: [UInt8: IPluginData] = [:]) throws {
-        try pluginManager.validate(address: try addressConverter.convert(address: address), pluginData: pluginData)
+        return try pluginManager.validate(address: try addressConverter.convert(address: address), pluginData: pluginData)
     }
 
     public func parse(paymentAddress: String) -> BitcoinPaymentData {
-        paymentAddressParser.parse(paymentAddress: paymentAddress)
+        return paymentAddressParser.parse(paymentAddress: paymentAddress)
     }
 
     public func fee(for value: Int, toAddress: String? = nil, feeRate: Int, pluginData: [UInt8: IPluginData] = [:]) throws -> Int {
-        try transactionFeeCalculator.fee(for: value, feeRate: feeRate, senderPay: true, toAddress: toAddress, pluginData: pluginData)
+        return try transactionFeeCalculator.fee(for: value, feeRate: feeRate, senderPay: true, toAddress: toAddress, pluginData: pluginData)
     }
 
     public func maxSpendableValue(toAddress: String? = nil, feeRate: Int, pluginData: [UInt8: IPluginData] = [:]) throws -> Int {
@@ -212,7 +212,7 @@ extension BitcoinCore {
     }
 
     public func maxSpendLimit(pluginData: [UInt8: IPluginData]) throws -> Int? {
-        try pluginManager.maxSpendLimit(pluginData: pluginData)
+        return try pluginManager.maxSpendLimit(pluginData: pluginData)
     }
 
     public func receiveAddress() -> String {
@@ -225,11 +225,11 @@ extension BitcoinCore {
     }
 
     public func changePublicKey() throws -> PublicKey {
-        try publicKeyManager.changePublicKey()
+        return try publicKeyManager.changePublicKey()
     }
 
     public func receivePublicKey() throws -> PublicKey {
-        try publicKeyManager.receivePublicKey()
+        return try publicKeyManager.receivePublicKey()
     }
 
     func watch(transaction: BitcoinCore.TransactionFilter, delegate: IWatchedTransactionDelegate) {
@@ -237,7 +237,7 @@ extension BitcoinCore {
     }
 
     public func debugInfo(network: INetwork) -> String {
-        dataProvider.debugInfo(network: network, scriptType: bip.scriptType, addressConverter: addressConverter)
+        return dataProvider.debugInfo(network: network, scriptType: bip.scriptType, addressConverter: addressConverter)
     }
 
     public var statusInfo: [(String, Any)] {

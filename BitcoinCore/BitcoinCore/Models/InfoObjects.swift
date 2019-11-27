@@ -40,6 +40,6 @@ public struct BalanceInfo : Equatable {
     public let unspendable: Int
 
     public static func ==(lhs: BalanceInfo, rhs: BalanceInfo) -> Bool {
-        lhs.spendable == rhs.spendable && lhs.unspendable == rhs.unspendable
+        return lhs.spendable == rhs.spendable && lhs.unspendable == rhs.unspendable
     }
 }

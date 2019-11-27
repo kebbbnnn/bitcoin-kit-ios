@@ -17,11 +17,11 @@ class BitcoinCashBlockValidatorHelper: IBitcoinCashBlockValidatorHelper {
     }
 
     func previous(for block: Block, count: Int) -> Block? {
-        coreBlockValidatorHelper.previous(for: block, count: count)
+        return coreBlockValidatorHelper.previous(for: block, count: count)
     }
 
     func previousWindow(for block: Block, count: Int) -> [Block]? {
-        coreBlockValidatorHelper.previousWindow(for: block, count: count)
+        return coreBlockValidatorHelper.previousWindow(for: block, count: count)
     }
 
 }

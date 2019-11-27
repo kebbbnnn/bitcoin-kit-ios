@@ -37,7 +37,7 @@ class DataProvider {
     }
 
     private func blockInfo(fromBlock block: Block) -> BlockInfo {
-        BlockInfo(
+        return BlockInfo(
                 headerHash: block.headerHash.reversedHex,
                 height: block.height,
                 timestamp: block.timestamp
@@ -84,7 +84,7 @@ extension DataProvider: IBlockchainDataListener {
 extension DataProvider: IDataProvider {
 
     func transactions(fromHash: String?, limit: Int?) -> Single<[TransactionInfo]> {
-        Single.create { observer in
+        return Single.create { observer in
             var fromTimestamp: Int? = nil
             var fromOrder: Int? = nil
 

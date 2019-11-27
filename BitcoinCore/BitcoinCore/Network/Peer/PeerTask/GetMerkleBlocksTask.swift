@@ -42,7 +42,7 @@ class GetMerkleBlocksTask: PeerTask {
     }
 
     override var state: String {
-        "minMerkleBlocksCount: \(minMerkleBlocksCount); minTransactionsCount: \(minTransactionsCount); minTransactionsSize: \(minTransactionsSize)"
+        return "minMerkleBlocksCount: \(minMerkleBlocksCount); minTransactionsCount: \(minTransactionsCount); minTransactionsSize: \(minTransactionsSize)"
     }
 
     override func start() {

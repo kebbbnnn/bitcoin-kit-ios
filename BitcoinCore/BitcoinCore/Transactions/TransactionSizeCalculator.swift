@@ -11,14 +11,14 @@ public class TransactionSizeCalculator {
     public init() {}
 
     private func outputSize(lockingScriptSize: Int) -> Int {
-        8 + 1 + lockingScriptSize            // spentValue + scriptLength + script
+        return 8 + 1 + lockingScriptSize            // spentValue + scriptLength + script
     }
 }
 
 extension TransactionSizeCalculator: ITransactionSizeCalculator {
 
     public func transactionSize(inputs: [ScriptType], outputScriptTypes: [ScriptType]) -> Int {      // in real bytes upped to int
-        transactionSize(inputs: inputs, outputScriptTypes: outputScriptTypes, pluginDataOutputSize: 0)
+        return transactionSize(inputs: inputs, outputScriptTypes: outputScriptTypes, pluginDataOutputSize: 0)
     }
 
     public func transactionSize(inputs: [ScriptType], outputScriptTypes: [ScriptType], pluginDataOutputSize: Int) -> Int {      // in real bytes upped to int
@@ -49,7 +49,7 @@ extension TransactionSizeCalculator: ITransactionSizeCalculator {
     }
 
     public func outputSize(type: ScriptType) -> Int {              // in real bytes
-        outputSize(lockingScriptSize: Int(type.size))
+        return outputSize(lockingScriptSize: Int(type.size))
     }
 
     public func  inputSize(type: ScriptType) -> Int {              // in real bytes
@@ -72,7 +72,7 @@ extension TransactionSizeCalculator: ITransactionSizeCalculator {
     }
 
     public func toBytes(fee: Int) -> Int {
-        fee / 4 + (fee % 4 == 0 ? 0 : 1)
+        return fee / 4 + (fee % 4 == 0 ? 0 : 1)
     }
 
 }

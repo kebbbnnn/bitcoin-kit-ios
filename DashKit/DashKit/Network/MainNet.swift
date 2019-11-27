@@ -28,7 +28,7 @@ class MainNet: INetwork {
     let dustRelayTxFee = 1000 // https://github.com/dashpay/dash/blob/master/src/policy/policy.h#L36
 
     var bip44CheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 1,
                         headerHash: "00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6".reversedData!,
@@ -41,7 +41,7 @@ class MainNet: INetwork {
                 height: 0)
     }
     var lastCheckpointBlock: Block {
-        Block(
+        return Block(
                 withHeader: BlockHeader(
                         version: 536870912,
                         headerHash: "000000000000000087895fde87f60ba1eebf761a962f1a74ded6d5499b0b6660".reversedData!,

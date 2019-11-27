@@ -33,7 +33,7 @@ public class HodlerOutputData: IPluginOutputData {
     }
 
     func toString() -> String {
-        "\(lockTimeInterval.rawValue)|\(addressString)"
+        return "\(lockTimeInterval.rawValue)|\(addressString)"
     }
 
 }

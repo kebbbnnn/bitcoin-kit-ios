@@ -11,7 +11,7 @@ class TransactionSigner {
     }
 
     private func signatureScript(from sigScriptData: [Data]) -> Data {
-        sigScriptData.reduce(Data()) {
+        return sigScriptData.reduce(Data()) {
             $0 + OpCode.push($1)
         }
     }

@@ -4,7 +4,7 @@ open class TransactionInfoConverter: ITransactionInfoConverter {
     public init() {}
 
     public func transactionInfo(fromTransaction transactionForInfo: FullTransactionForInfo) -> TransactionInfo {
-        baseTransactionInfoConverter.transactionInfo(fromTransaction: transactionForInfo)
+        return baseTransactionInfoConverter.transactionInfo(fromTransaction: transactionForInfo)
     }
 
 }

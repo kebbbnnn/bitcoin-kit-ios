@@ -23,7 +23,7 @@ class RequestRouter: URLRequestConvertible {
     }
 
     func asURLRequest() throws -> URLRequest {
-        try encoding.encode(request, with: parameters)
+        return try encoding.encode(request, with: parameters)
     }
 
 }
@@ -54,7 +54,7 @@ public class ApiManager {
     }
 
     public func observable<T>(forRequest request: URLRequestConvertible, mapper: @escaping (Any) -> T?) -> Observable<T> {
-        self.observable(forRequest: request)
+        return self.observable(forRequest: request)
                 .flatMap { dataResponse -> Observable<T> in
                     switch dataResponse.result {
                     case .success(let result):
@@ -75,7 +75,7 @@ public class ApiManager {
     }
 
     public func observable<T: ImmutableMappable>(forRequest request: URLRequestConvertible) -> Observable<[T]> {
-        observable(forRequest: request, mapper: { json in
+        return observable(forRequest: request, mapper: { json in
             if let jsonArray = json as? [[String: Any]] {
                 return jsonArray.compactMap { try? T(JSONObject: $0) }
             }
@@ -84,7 +84,7 @@ public class ApiManager {
     }
 
     public func observable<T: ImmutableMappable>(forRequest request: URLRequestConvertible) -> Observable<T> {
-        observable(forRequest: request, mapper: { json in
+        return observable(forRequest: request, mapper: { json in
             if let jsonObject = json as? [String: Any], let object = try? T(JSONObject: jsonObject) {
                 return object
             }
